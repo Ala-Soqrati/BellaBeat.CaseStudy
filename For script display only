@@ -1,0 +1,53 @@
+#DATA CLEANING: Finding Duplicates and N/A
+
+SELECT id, COUNT(*)
+FROM dailyactivity_merged
+GROUP BY id
+HAVING COUNT(*)>1
+
+SELECT *
+FROM bellabeat.'weightloginfo_merged 2'
+WHERE id is null
+
+
+*#RELATINSHIPS: FINDING relations between activity level and calories*
+
+SELECT id, activitydate, calories, totalsteps, veryactiveminutes, lightlyactiveminutes, fairlyactiveminutes, sedentaryminutes
+FROM dailyactivity_merged
+WHERE veryactiveminutes+faitlyactiveminutes+ lightlyactiveminutes <> 0
+ORDER BY totalsteps DESC
+
+
+*#RELATINSHIPS: FINDING relations between activity level and Sleep*
+
+SELECT activity.id, activitydate, calories, totalsteps, veryactiveminutes, lightlyactiveminutes, totalseeprecords, totalminutesAslpeep
+FROM dailyactivity_merged AS activity
+INNER JOIN 'sleepday_merged 2' AS sleep
+On activity.id + sleep.id AND activity.activity.activitydate = sleep.sleepday
+
+
+*#RELATINSHIPS: FINDING relations between activity level and weight*
+
+SELECT actividy.id, activityDate, totalsteps, calories, veryactiveminutes, lightlyactiveminutes, BMI
+FROM dailyactivity_merged AS activity
+INNER JOIN 'weightloginfo_mergd' AS weight
+ON activity.id + weight.id AND activity.activitydate = weight.date
+
+
+*#RELATINSHIPS: FINDING relations between sleep time and weight*
+SELECT sleep.id, totalsleeprecords, TotalminutesAsleep, BMI
+FROM 'sleepday_merged 2' AS weight
+ON sleep.id = weight.id AND sleep.sleepday = weight.date
+
+
+*#RELATINSHIPS: FINDING relations between sleep and sedentary minutes*
+
+SELECT activity.id, Totalsteps, activityDate, veryactiveminutes, lightlyactiveminutes, totalsleeprecords, TotalminutesAsleep, SedentaryMinutes
+FROM dailyactivity_merged AS activity
+INNER JOIN 'sleepday_merged 2' AS sleep
+OM activity.id = sleep.id AND activity.activitydate = sleep.sleepday
+ORDER BY totalminutesAsleep desc
+
+
+
+*#RESULTS*
