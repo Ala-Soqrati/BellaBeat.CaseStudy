@@ -9,6 +9,6 @@ This repository contains various SQL scripts I've created for database queries, 
 The results show us that there’s a clear trend in non-active people having a negative lifestyle,
 The analysis on my hypothesis has led us to draw a few major conclusions:
 
- More activity will surely lead to more calories burnt.  More activity would lead to better health and lifestyle, is also increases the quality of sleep. (according to my last hypothesis)
+- More activity will surely lead to more calories burnt.  More activity would lead to better health and lifestyle, is also increases the quality of sleep. (according to my last hypothesis)
 
- Non-active people would probably have a higher BMI
+- Non-active people would probably have a higher BMI
